@@ -1,3 +1,3 @@
 # FlagPredictionwithFuzzyLogic
 
-This project recognizes the flag that given some features using Fuzzy Logic.
+This project recognizes flags that given some features using Fuzzy Logic.
