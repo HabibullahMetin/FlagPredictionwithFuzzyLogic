@@ -1,0 +1,539 @@
+
+// Değişken Tanımlama
+
+FUNCTION_BLOCK model
+
+VAR_INPUT 
+    area : REAL;
+    population : REAL;
+    bars : REAL;
+    stripes : REAL;
+    colours : REAL;
+    sunstars : REAL;
+    landmass : REAL;
+    language : REAL;
+    religion : REAL; 
+END_VAR
+
+VAR_OUTPUT
+    flag : REAL;
+END_VAR
+
+// Bulanıklaştırma
+
+FUZZIFY area 
+    TERM en_kucuk := (0,1)(80,1)(100,0);
+    TERM cok_kucuk := (75,0)(200,1)(400,1)(500,0);
+    TERM orta_kucuk := (400,0)(650,1)(1000,1)(1200,0);
+    TERM buyuk := trape 1000 1500 5000 6000;
+    TERM cok_buyuk := trape 5000 6000 10000 12000;
+    TERM devasa_buyuk := trape 10000 18000 22402 22402;
+END_FUZZIFY
+
+FUZZIFY population
+    TERM cok_tenha := trape 0 0 4 5;
+    TERM tenha := trape 4 8 15 20;
+    TERM az_kalabalik := trape 15 25 50 60;
+    TERM orta_kalabalik := trape 50 80 120 150;
+    TERM cok_kalabalik := trape 120 200 500 600;
+    TERM devasa_kalabalik := trape 500 700 1008 1008;
+END_FUZZIFY
+
+FUZZIFY bars
+    TERM az_dikey_cizgi := trape 0 0 1 1.5;
+    TERM orta_dikey_cizgi := trape 1 1.5 2.25 2.5;
+    TERM cok_dikey_cizgi := trape 2.25 3 3.75 4;
+    TERM asiri_dikey_cizgi := trape 3.25 4 5 5;
+END_FUZZIFY
+
+FUZZIFY stripes
+    TERM az_yatay_cizgi := trape 0 0 1.5 2.5;
+    TERM orta_yatay_cizgi := trape 2.25 3 3.75 4; 
+    TERM cok_yatay_cizgi := trape 3.5 4.5 7.25 8;
+    TERM asiri_yatay_cizgi := trape 7.25 9 14 14;
+END_FUZZIFY
+
+FUZZIFY colours
+    TERM az_renkli := trape 1 1 2 2.5;
+    TERM orta_renkli := trape 2.25 3 3.25 3.5;
+    TERM cok_renkli := trape 3.25 4 5.25 5.5;
+    TERM asiri_renkli := trape 5.25 6 8 8;
+END_FUZZIFY
+
+FUZZIFY sunstars
+    TERM cok_az_simge := trape 0 0 1.25 1.5;
+    TERM az_simge := trape 1.25 2 4 4.5;
+    TERM fazla_simge := trape 4 5 8 8.5; 
+    TERM asiri_fazla_simge := trape 8 9 50 50; 
+END_FUZZIFY
+
+FUZZIFY landmass
+    TERM north_america := 1;
+    TERM south_america := 2;
+    TERM europe := 3;
+    TERM africa := 4;
+    TERM asia := 5; 
+    TERM oceania := 6;
+END_FUZZIFY
+
+FUZZIFY language
+    TERM english := 1;
+    TERM spanish := 2;
+    TERM french := 3;
+    TERM german := 4;
+    TERM slavic := 5; 
+    TERM other_indo_european := 6;
+    TERM chinese := 7;
+    TERM arabic := 8;
+    TERM japanese_turkish_finnish_magyar := 9;
+    TERM other_languages := 10;
+END_FUZZIFY
+
+FUZZIFY religion
+    TERM catholic := 0;
+    TERM other_christian := 1;
+    TERM muslim := 2;
+    TERM buddhist := 3;
+    TERM hindu := 4; 
+    TERM ethnic := 5;
+    TERM marxist := 6;
+    TERM other_religions := 7;
+END_FUZZIFY
+
+// Durulama
+
+DEFUZZIFY flag 
+    TERM afghanistan := 1;
+    TERM albania := 2;
+    TERM algeria := 3;
+    TERM american_samoa := 4;
+    TERM andorra := 5;
+    TERM angola := 6;
+    TERM anguilla := 7;
+    TERM antigua_barbuda := 8;
+    TERM argentina := 9;
+    TERM australia := 10;
+    TERM austria := 11;
+    TERM bahamas := 12;
+    TERM bahrain := 13;
+    TERM bangladesh := 14;
+    TERM barbados := 15;
+    TERM belgium := 16;
+    TERM belize := 17;
+    TERM benin := 18;
+    TERM bermuda := 19;
+    TERM bhutan := 20;
+    TERM bolivia := 21;
+    TERM botswana := 22;
+    TERM brazil := 23;
+    TERM british_virgin_isles := 24;
+    TERM brunei := 25;
+    TERM bulgaria := 26;
+    TERM burkina := 27;
+    TERM burma := 28;
+    TERM burundi := 29;
+    TERM cameroon := 30;
+    TERM canada := 31;
+    TERM cape_verde_islands := 32;
+    TERM cayman_islands := 33;
+    TERM central_african_republic := 34;
+    TERM chad := 35;
+    TERM chile := 36;
+    TERM china := 37;
+    TERM colombia := 38;
+    TERM comorro_islands := 39;
+    TERM congo := 40;
+    TERM cook_islands := 41;
+    TERM costa_rica := 42;
+    TERM cuba := 43;
+    TERM cyprus := 44;
+    TERM czechoslovakia := 45;
+    TERM denmark := 46;
+    TERM djibouti := 47;
+    TERM dominica := 48;
+    TERM dominican_republic := 49;
+    TERM ecuador := 50;
+    TERM egypt := 51;
+    TERM el_salvador := 52;
+    TERM equatorial_guinea := 53;
+    TERM ethiopia := 54;
+    TERM faeroes := 55;
+    TERM falklands_malvinas := 56;
+    TERM fiji := 57;
+    TERM finland := 58;
+    TERM france := 59;
+    TERM french_guiana := 60;
+    TERM french_polynesia := 61;
+    TERM gabon := 62;
+    TERM gambia := 63;
+    TERM germany_ddr := 64;
+    TERM germany_frg := 65;
+    TERM ghana := 66;
+    TERM gibraltar := 67;
+    TERM greece := 68;
+    TERM greenland := 69;
+    TERM grenada := 70;
+    TERM guam := 71;
+    TERM guatemala := 72;
+    TERM guinea := 73;
+    TERM guinea_bissau := 74;
+    TERM guyana := 75;
+    TERM haiti := 76;
+    TERM honduras := 77;
+    TERM hong_kong := 78;
+    TERM hungary := 79;
+    TERM iceland := 80;
+    TERM india := 81;
+    TERM indonesia := 82;
+    TERM iran := 83;
+    TERM iraq := 84;
+    TERM ireland := 85;
+    TERM israel := 86;
+    TERM italy := 87;
+    TERM ivory_coast := 88;
+    TERM jamaica := 89;
+    TERM japan := 90;
+    TERM jordan := 91;
+    TERM kampuchea := 92;
+    TERM kenya := 93;
+    TERM kiribati := 94;
+    TERM kuwait := 95;
+    TERM laos := 96;
+    TERM lebanon := 97;
+    TERM lesotho := 98;
+    TERM liberia := 99;
+    TERM libya := 100;
+    TERM liechtenstein := 101;
+    TERM luxembourg := 102;
+    TERM malagasy := 103;
+    TERM malawi := 104;
+    TERM malaysia := 105;
+    TERM maldive_islands := 106;
+    TERM mali := 107;
+    TERM malta := 108;
+    TERM marianas := 109;
+    TERM mauritania := 110;
+    TERM mauritius := 111;
+    TERM mexico := 112;
+    TERM micronesia := 113;
+    TERM monaco := 114;
+    TERM mongolia := 115;
+    TERM montserrat := 116;
+    TERM morocco := 117;
+    TERM mozambique := 118;
+    TERM nauru := 119;
+    TERM nepal := 120;
+    TERM netherlands := 121;
+    TERM netherlands_antilles := 122;
+    TERM new_zealand := 123;
+    TERM nicaragua := 124;
+    TERM niger := 125;
+    TERM nigeria := 126;
+    TERM niue := 127;
+    TERM north_korea := 128;
+    TERM north_yemen := 129;
+    TERM norway := 130;
+    TERM oman := 131;
+    TERM pakistan := 132;
+    TERM panama := 133;
+    TERM papua_new_guinea := 134;
+    TERM parguay := 135;
+    TERM peru := 136;
+    TERM philippines := 137;
+    TERM poland := 138;
+    TERM portugal := 139;
+    TERM puerto_rico := 140;
+    TERM qatar := 141;
+    TERM romania := 142;
+    TERM rwanda := 143;
+    TERM san_marino := 144;
+    TERM sao_tome := 145;
+    TERM saudi_arabia := 146;
+    TERM senegal := 147;
+    TERM seychelles := 148;
+    TERM sierra_leone := 149;
+    TERM singapore := 150;
+    TERM soloman_islands := 151;
+    TERM somalia := 152;
+    TERM south_africa := 153;
+    TERM south_korea := 154;
+    TERM south_yemen := 155;
+    TERM spain := 156;
+    TERM sri_lanka := 157;
+    TERM st_helena := 158;
+    TERM st_kitts_nevis := 159;
+    TERM st_lucia := 160;
+    TERM st_vincent := 161;
+    TERM sudan := 162;
+    TERM surinam := 163;
+    TERM swaziland := 164;
+    TERM sweden := 165;
+    TERM switzerland := 166;
+    TERM syria := 167;
+    TERM taiwan := 168;
+    TERM tanzania := 169;
+    TERM thailand := 170;
+    TERM togo := 171;
+    TERM tonga := 172;
+    TERM trinidad_tobago := 173;
+    TERM tunisia := 174;
+    TERM turkey := 175;
+    TERM turks_cocos_islands := 176;
+    TERM tuvalu := 177;
+    TERM uae := 178;
+    TERM uk := 179;
+    TERM us_virgin_isles := 180;
+    TERM usa := 181;
+    TERM ussr := 182;
+    TERM uganda := 183;
+    TERM uruguay := 184;
+    TERM vanuatu := 185;
+    TERM vatican_city := 186;
+    TERM venezuela := 187;
+    TERM vietnam := 188;
+    TERM western_samoa := 189;
+    TERM yugoslavia := 190;
+    TERM zaire := 191;
+    TERM zambia := 192;
+    TERM zimbabwe := 193;
+    METHOD : COGS;
+    DEFAULT := 250;
+END_DEFUZZIFY
+
+// Kural Yazımı
+
+RULEBLOCK kuralBlok1
+    AND : MIN;
+    ACT : MIN;
+    ACCU : MAX;
+
+    RULE 1 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS  muslim THEN flag IS afghanistan;
+    RULE 2 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS  muslim THEN flag IS afghanistan;
+    RULE 3 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS  marxist THEN flag IS albania;
+    RULE 4 : IF area IS buyuk AND population IS az_kalabalik AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS  muslim THEN flag IS algeria;
+    RULE 5 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS english AND religion IS  other_christian THEN flag IS american_samoa;
+    RULE 6 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS andorra;
+    RULE 7 : IF area IS buyuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS angola;
+    RULE 8 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS anguilla;
+    RULE 9 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS antigua_barbuda;
+    RULE 10 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS argentina;
+    RULE 11 : IF area IS cok_buyuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS fazla_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS australia;
+    RULE 12 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS german AND religion IS catholic THEN flag IS austria;
+    RULE 13 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS catholic THEN flag IS austria;
+    RULE 14 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS bahamas;
+    RULE 15 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS bahrain;
+    RULE 16 : IF area IS cok_kucuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_indo_european AND religion IS muslim THEN flag IS bangladesh;
+    RULE 17 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS barbados;
+    RULE 18 : IF area IS en_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS belgium;
+    RULE 19 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS belize;
+    RULE 20 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS ethnic THEN flag IS benin;
+    RULE 21 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS bermuda;
+    RULE 22 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS buddhist THEN flag IS bhutan;
+    RULE 23 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS bolivia;
+    RULE 24 : IF area IS buyuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS bolivia;
+    RULE 25 : IF area IS orta_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS botswana;
+    RULE 26 : IF area IS cok_buyuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS asiri_fazla_simge AND landmass IS south_america AND language IS other_indo_european AND religion IS catholic THEN flag IS brazil;
+    RULE 27 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS british_virgin_isles;
+    RULE 28 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS muslim THEN flag IS brunei;
+    RULE 29 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS slavic AND religion IS marxist THEN flag IS bulgaria;
+    RULE 30 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS ethnic THEN flag IS burkina;
+    RULE 31 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS asiri_fazla_simge AND landmass IS asia AND language IS other_languages AND religion IS buddhist THEN flag IS burma;
+    RULE 32 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS burundi;
+    RULE 33 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS africa AND language IS french AND religion IS other_christian THEN flag IS cameroon;
+    RULE 34 : IF area IS orta_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS other_christian THEN flag IS cameroon;
+    RULE 35 : IF area IS cok_buyuk AND population IS az_kalabalik AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS canada;
+    RULE 36 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_indo_european AND religion IS catholic THEN flag IS cape_verde_islands;
+    RULE 37 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS cayman_islands;
+    RULE 38 : IF area IS orta_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS central_african_republic;
+    RULE 39 : IF area IS buyuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS ethnic THEN flag IS chad;
+    RULE 40 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS chile;
+    RULE 41 : IF area IS cok_buyuk AND population IS devasa_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS fazla_simge AND landmass IS asia AND language IS chinese AND religion IS marxist THEN flag IS china;
+    RULE 42 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS colombia;
+    RULE 43 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS colombia;
+    RULE 44 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS az_simge AND landmass IS africa AND language IS french AND religion IS muslim THEN flag IS comorro_islands;
+    RULE 45 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS congo;
+    RULE 46 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS asiri_fazla_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS cook_islands;
+    RULE 47 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS costa_rica;
+    RULE 48 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS marxist THEN flag IS cuba;
+    RULE 49 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS cyprus;
+    RULE 50 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS slavic AND religion IS marxist THEN flag IS czechoslovakia;
+    RULE 51 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS denmark;
+    RULE 52 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS muslim THEN flag IS djibouti;
+    RULE 53 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS asiri_fazla_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS dominica;
+    RULE 54 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS dominican_republic;
+    RULE 55 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS ecuador;
+    RULE 56 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS egypt;
+    RULE 57 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS egypt;
+    RULE 58 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS el_salvador;
+    RULE 59 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS equatorial_guinea;
+    RULE 60 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS other_christian THEN flag IS ethiopia;
+    RULE 61 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS faeroes;
+    RULE 62 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS english AND religion IS other_christian THEN flag IS falklands_malvinas;
+    RULE 63 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS fiji;
+    RULE 64 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS japanese_turkish_finnish_magyar AND religion IS other_christian THEN flag IS finland;
+    RULE 65 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS french AND religion IS other_christian THEN flag IS france;
+    RULE 66 : IF area IS orta_kucuk AND population IS orta_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS french AND religion IS catholic THEN flag IS france;
+    RULE 67 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS french AND religion IS catholic THEN flag IS french_guiana;
+    RULE 68 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS french AND religion IS catholic THEN flag IS french_guiana;
+    RULE 69 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS french AND religion IS catholic THEN flag IS french_polynesia;
+    RULE 70 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS gabon;
+    RULE 71 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS english AND religion IS ethnic THEN flag IS gambia;
+    RULE 72 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS marxist THEN flag IS germany_ddr;
+    RULE 73 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS marxist THEN flag IS germany_ddr;
+    RULE 74 : IF area IS cok_kucuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS other_christian THEN flag IS germany_frg;
+    RULE 75 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS english AND religion IS ethnic THEN flag IS ghana;
+    RULE 76 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS english AND religion IS other_christian THEN flag IS gibraltar;
+    RULE 77 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS asiri_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS greece;
+    RULE 78 : IF area IS buyuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS other_indo_european AND religion IS other_christian THEN flag IS greenland;
+    RULE 79 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS fazla_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS grenada;
+    RULE 80 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS guam;
+    RULE 81 : IF area IS cok_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS guatemala;
+    RULE 82 : IF area IS cok_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS muslim THEN flag IS guinea;
+    RULE 83 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_indo_european AND religion IS ethnic THEN flag IS guinea_bissau;
+    RULE 84 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS english AND religion IS hindu THEN flag IS guyana;
+    RULE 85 : IF area IS en_kucuk AND population IS tenha AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS french AND religion IS catholic THEN flag IS haiti;
+    RULE 86 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS fazla_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS honduras;
+    RULE 87 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS chinese AND religion IS buddhist THEN flag IS hong_kong;
+    RULE 88 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS japanese_turkish_finnish_magyar AND religion IS marxist THEN flag IS hungary;
+    RULE 89 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS japanese_turkish_finnish_magyar AND religion IS marxist THEN flag IS hungary;
+    RULE 90 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS iceland;
+    RULE 91 : IF area IS buyuk AND population IS devasa_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_indo_european AND religion IS hindu THEN flag IS india;
+    RULE 92 : IF area IS buyuk AND population IS cok_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS other_languages AND religion IS muslim THEN flag IS indonesia;
+    RULE 93 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_indo_european AND religion IS muslim THEN flag IS iran;
+    RULE 94 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS iraq;
+    RULE 95 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS iraq;
+    RULE 96 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS english AND religion IS catholic THEN flag IS ireland;
+    RULE 97 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS other_religions THEN flag IS israel;
+    RULE 98 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS italy;
+    RULE 99 : IF area IS cok_kucuk AND population IS orta_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS italy;
+    RULE 100 : IF area IS cok_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS ethnic THEN flag IS ivory_coast;
+    RULE 101 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS jamaica;
+    RULE 102 : IF area IS cok_kucuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS japanese_turkish_finnish_magyar AND religion IS other_religions THEN flag IS japan;
+    RULE 103 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS jordan;
+    RULE 104 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS jordan;
+    RULE 105 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS buddhist THEN flag IS kampuchea;
+    RULE 106 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS kenya;
+    RULE 107 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS kenya;
+    RULE 108 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS kiribati;
+    RULE 109 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS kuwait;
+    RULE 110 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS marxist THEN flag IS laos;
+    RULE 111 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS lebanon;
+    RULE 112 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS lesotho;
+    RULE 113 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS asiri_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS liberia;
+    RULE 114 : IF area IS buyuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS libya;
+    RULE 114 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS catholic THEN flag IS liechtenstein;
+    RULE 115 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS catholic THEN flag IS luxembourg;
+    RULE 116 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS other_christian THEN flag IS malagasy;
+    RULE 117 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS malawi;
+    RULE 118 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS asiri_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS muslim THEN flag IS malaysia;
+    RULE 119 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS muslim THEN flag IS maldive_islands;
+    RULE 120 : IF area IS buyuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS muslim THEN flag IS mali;
+    RULE 121 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_languages AND religion IS catholic THEN flag IS malta;
+    RULE 122 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS other_languages AND religion IS other_christian THEN flag IS marianas;
+    RULE 123 : IF area IS orta_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS mauritania;
+    RULE 124 : IF area IS buyuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS mauritania;
+    RULE 125 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS english AND religion IS hindu THEN flag IS mauritius;
+    RULE 126 : IF area IS buyuk AND population IS orta_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS mexico;
+    RULE 127 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS az_simge AND landmass IS oceania AND language IS other_languages AND religion IS other_christian THEN flag IS micronesia;
+    RULE 128 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS french AND religion IS catholic THEN flag IS monaco;
+    RULE 129 : IF area IS buyuk AND population IS cok_tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS marxist THEN flag IS mongolia;
+    RULE 130 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS montserrat;
+    RULE 131 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS morocco;
+    RULE 132 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS morocco;
+    RULE 133 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS mozambique;
+    RULE 134 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS other_languages AND religion IS other_christian THEN flag IS nauru;
+    RULE 135 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS asia AND language IS other_languages AND religion IS hindu THEN flag IS nepal;
+    RULE 136 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS asia AND language IS other_languages AND religion IS hindu THEN flag IS nepal;
+    RULE 137 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS netherlands;
+    RULE 138 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS fazla_simge AND landmass IS north_america AND language IS other_indo_european AND religion IS other_christian THEN flag IS netherlands_antilles;
+    RULE 139 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS new_zealand;
+    RULE 140 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS nicaragua;
+    RULE 141 : IF area IS buyuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS muslim THEN flag IS niger;
+    RULE 142 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS muslim THEN flag IS nigeria;
+    RULE 143 : IF area IS orta_kucuk AND population IS orta_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS muslim THEN flag IS nigeria;
+    RULE 144 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS fazla_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS niue;
+    RULE 145 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS marxist THEN flag IS north_korea;
+    RULE 146 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS marxist THEN flag IS north_korea;
+    RULE 147 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS north_yemen;
+    RULE 148 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS norway;
+    RULE 149 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS oman;
+    RULE 150 : IF area IS orta_kucuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_indo_european AND religion IS muslim THEN flag IS pakistan;
+    RULE 151 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS panama;
+    RULE 151 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS panama;
+    RULE 152 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS fazla_simge AND landmass IS oceania AND language IS english AND religion IS ethnic THEN flag IS papua_new_guinea;
+    RULE 153 : IF area IS orta_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS fazla_simge AND landmass IS oceania AND language IS english AND religion IS ethnic THEN flag IS papua_new_guinea;
+    RULE 154 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS parguay;
+    RULE 155 : IF area IS orta_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS parguay;
+    RULE 156 : IF area IS buyuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS peru;
+    RULE 157 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS az_simge AND landmass IS oceania AND language IS other_languages AND religion IS catholic THEN flag IS philippines;
+    RULE 158 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS slavic AND religion IS marxist THEN flag IS poland;
+    RULE 159 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS portugal;
+    RULE 160 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS portugal;
+    RULE 161 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS spanish AND religion IS catholic THEN flag IS puerto_rico;
+    RULE 162 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS qatar;
+    RULE 163 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS marxist THEN flag IS romania;
+    RULE 163 : IF area IS en_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS rwanda;
+    RULE 164 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS san_marino;
+    RULE 165 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS az_simge AND landmass IS africa AND language IS other_indo_european AND religion IS catholic THEN flag IS sao_tome;
+    RULE 166 : IF area IS buyuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS saudi_arabia;
+    RULE 167 : IF area IS cok_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS muslim THEN flag IS senegal;
+    RULE 168 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS english AND religion IS other_christian THEN flag IS seychelles;
+    RULE 169 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS english AND religion IS ethnic THEN flag IS sierra_leone;
+    RULE 170 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS fazla_simge AND landmass IS asia AND language IS chinese AND religion IS buddhist THEN flag IS singapore;
+    RULE 171 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS fazla_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS soloman_islands;
+    RULE 172 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS muslim THEN flag IS somalia;
+    RULE 173 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_indo_european AND religion IS other_christian THEN flag IS south_africa;
+    RULE 174 : IF area IS en_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS other_religions THEN flag IS south_korea;
+    RULE 175 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS other_religions THEN flag IS south_korea;
+    RULE 176 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS south_yemen;
+    RULE 177 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS spanish AND religion IS catholic THEN flag IS spain;
+    RULE 178 : IF area IS en_kucuk AND population IS tenha AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS buddhist THEN flag IS sri_lanka;
+    RULE 179 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS english AND religion IS other_christian THEN flag IS st_helena;
+    RULE 180 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS st_kitts_nevis;
+    RULE 181 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS st_lucia;
+    RULE 182 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS asiri_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS st_vincent;
+    RULE 183 : IF area IS buyuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS sudan;
+    RULE 184 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS other_indo_european AND religion IS other_christian THEN flag IS surinam;
+    RULE 185 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS other_christian THEN flag IS swaziland;
+    RULE 186 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS sweden;
+    RULE 187 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS other_christian THEN flag IS sweden;
+    RULE 188 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS german AND religion IS other_christian THEN flag IS switzerland;
+    RULE 189 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS syria;
+    RULE 190 : IF area IS en_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS chinese AND religion IS buddhist THEN flag IS taiwan;
+    RULE 191 : IF area IS en_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS chinese AND religion IS buddhist THEN flag IS taiwan;
+    RULE 192 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS tanzania;
+    RULE 193 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS tanzania;
+    RULE 194 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS buddhist THEN flag IS thailand;
+    RULE 195 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS french AND religion IS other_religions THEN flag IS togo;
+    RULE 196 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS other_languages AND religion IS other_christian THEN flag IS tonga;
+    RULE 197 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS english AND religion IS other_christian THEN flag IS trinidad_tobago;
+    RULE 198 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS arabic AND religion IS muslim THEN flag IS tunisia;
+    RULE 199 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS japanese_turkish_finnish_magyar AND religion IS muslim THEN flag IS turkey;
+    RULE 200 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS turks_cocos_islands;
+    RULE 201 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS asiri_fazla_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS tuvalu;
+    RULE 202 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS uae;
+    RULE 203 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS arabic AND religion IS muslim THEN flag IS uae;
+    RULE 204 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS uganda;
+    RULE 205 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS english AND religion IS other_christian THEN flag IS uk;
+    RULE 206 : IF area IS cok_kucuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS english AND religion IS other_christian THEN flag IS uk;
+    RULE 207 : IF area IS cok_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS asiri_yatay_cizgi AND colours IS orta_renkli AND sunstars IS cok_az_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS uruguay;
+    RULE 208 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS cok_az_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS us_virgin_isles;
+    RULE 209 : IF area IS cok_buyuk AND population IS cok_kalabalik AND bars IS az_dikey_cizgi AND stripes IS asiri_yatay_cizgi AND colours IS orta_renkli AND sunstars IS asiri_fazla_simge AND landmass IS north_america AND language IS english AND religion IS other_christian THEN flag IS usa;
+    RULE 210 : IF area IS devasa_buyuk AND population IS cok_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS slavic AND religion IS marxist THEN flag IS ussr;
+    RULE 211 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS oceania AND language IS other_indo_european AND religion IS other_christian THEN flag IS vanuatu;
+    RULE 212 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS orta_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS catholic THEN flag IS vatican_city;
+    RULE 213 : IF area IS orta_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS asiri_renkli AND sunstars IS fazla_simge AND landmass IS south_america AND language IS spanish AND religion IS catholic THEN flag IS venezuela;
+    RULE 214 : IF area IS cok_kucuk AND population IS orta_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS az_renkli AND sunstars IS cok_az_simge AND landmass IS asia AND language IS other_languages AND religion IS marxist THEN flag IS vietnam;
+    RULE 215 : IF area IS en_kucuk AND population IS cok_tenha AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS orta_renkli AND sunstars IS fazla_simge AND landmass IS oceania AND language IS english AND religion IS other_christian THEN flag IS western_samoa;
+    RULE 216 : IF area IS cok_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS orta_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS europe AND language IS other_indo_european AND religion IS marxist THEN flag IS yugoslavia;
+    RULE 217 : IF area IS orta_kucuk AND population IS az_kalabalik AND bars IS az_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS zaire;
+    RULE 218 : IF area IS orta_kucuk AND population IS tenha AND bars IS cok_dikey_cizgi AND stripes IS az_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS zambia;   
+    RULE 219 : IF area IS cok_kucuk AND population IS tenha AND bars IS az_dikey_cizgi AND stripes IS cok_yatay_cizgi AND colours IS cok_renkli AND sunstars IS cok_az_simge AND landmass IS africa AND language IS other_languages AND religion IS ethnic THEN flag IS zimbabwe;   
+
+END_RULEBLOCK
+
+
+END_FUNCTION_BLOCK
+ 
+
+    
